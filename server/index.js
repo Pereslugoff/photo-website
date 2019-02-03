@@ -6,7 +6,8 @@ const Photo = require('./db/Photo')
 const app = express()
 
 app.use(express.json())
-app.use(express.urlencoded(path.join(__dirname, '..', 'public')))
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static(path.join(__dirname, '..', 'public')))
 
 app.get('/api/albums', async (req, res) => {
   try {
@@ -22,9 +23,10 @@ app.get('/api/albums', async (req, res) => {
   }
 })
 
-app.get('/api/photos', async (req, res)=> {
+app.get('/api/albums/:albumId', async (req, res)=> {
   try {
-    const photos = await Photo.findAll()
+    const id = req.params.albumId
+    const photos = await Photo.findAll({ where: { albumId: id }})
 
     res.json({
       photos

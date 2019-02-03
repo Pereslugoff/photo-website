@@ -1,15 +1,19 @@
+body {
+  overflow: hidden;
+}
+
 #appBody {
   height: 97vh;
   display: flex;
   flex-direction: row;
-  justify-content: space-betwee;
+  justify-content: space-between;
 }
 
 
 #sideMenu {
   /* border: 5px solid black; */
   text-align: center;
-  width: 15vw;
+  flex-basis: 15%;
   height: 100%;
   padding-top: 5%;
 }
@@ -23,12 +27,26 @@ li {
 }
 
 #photoDisplay {
-  max-width: 90vw;
+  flex-basis: 85%
 }
 
 #currentImage {
+  max-height: 760px;
   max-width: 70%;
-  padding: 5%;
-  padding-left: 20%;
 }
 
+.direction-arrow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 700px;
+}
+
+#photo-display-container{
+  padding-top: 5%;
+  /* max-height: 80%; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}

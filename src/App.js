@@ -1,25 +1,61 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import axios from "axios";
+import "./App.css";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      albums: [],
+      currentAlbum: []
+    };
+  }
+
+  async componentDidMount() {
+    try {
+      const photos = await axios.get("/api/photos");
+      const albums = await axios.get("/api/albums");
+      this.setState({
+        albums: albums.data.albums,
+        currentAlbum: photos.data.photos
+      });
+      console.log(this.state);
+    } catch (error) {}
+  }
+
   render() {
+    let landingPhoto;
+    if (this.state.currentAlbum[0]) {
+      landingPhoto = this.state.currentAlbum[0].photoUrl;
+    }
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <div id="appBody">
+          <div id="sideMenu">
+            <ul id="nav">
+              {this.state.albums.map(album => {
+                return (
+                  <div>
+                    <li>{album.name}</li>
+                    <hr />
+                  </div>
+                );
+              })}
+            </ul>
+          </div>
+          <div id="photoDisplay">
+            {landingPhoto !== undefined ? (
+              <img
+                src={`/photos/${landingPhoto}`}
+                alt="Loading..."
+                id="currentImage"
+              />
+            ) : (
+              "Loading..."
+            )}
+          </div>
+        </div>
       </div>
     );
   }

@@ -20,10 +20,34 @@ body {
 
 #nav {
   list-style-type: none;
+  display: flex;
+  flex-direction: column;
+}
+
+#header {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 700;
+  cursor: default;
+}
+
+#footer {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 100;
+  padding-top: 25%;
+}
+
+ul {
+  padding-left: 0;
 }
 
 li {
-  margin: 10px 0;
+  margin: 15px 0;
+  font-family: 'IBM Plex Sans', sans-serif;
+  /* font-family: 'Roboto', sans-serif; */
+}
+
+li:hover {
+  cursor: pointer;
 }
 
 #photoDisplay {
@@ -31,22 +55,42 @@ li {
 }
 
 #currentImage {
-  max-height: 760px;
+  max-height: 100%;
   max-width: 70%;
+  align-self: center;
+  animation: fadeIn .5s;
 }
 
 .direction-arrow {
+  color: white;
+  flex-basis: 16.5%;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   height: 700px;
+  transition: color 1s;
 }
+
+.direction-arrow:hover {
+  color: black;
+  cursor: pointer;
+}
+
 
 #photo-display-container{
   padding-top: 5%;
-  /* max-height: 80%; */
+  height: 660px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0
+  } to {
+    opacity: 1
+  }
 }

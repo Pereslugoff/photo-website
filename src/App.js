@@ -62,15 +62,19 @@ class App extends Component {
       <div className="App">
         <div id="appBody">
           <div id="sideMenu">
+            <h1 id="header">Nick Pereslugoff</h1>
             <ul id="nav">
               {this.state.albums.map(album => {
                 return (
                   <div onClick={() => this.selectCurrent(album.id)}>
                     <li>{album.name}</li>
-                    <hr />
                   </div>
                 );
               })}
+            </ul>
+            <ul id="footer">
+              <li>Contact</li>
+              <li>Bio</li>
             </ul>
           </div>
           <div id="photoDisplay">
@@ -91,4 +95,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App
